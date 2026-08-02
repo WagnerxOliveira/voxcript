@@ -10,6 +10,16 @@
   </p>
 </div>
 
+---
+
+## 🚀 Link de Acesso Direto (Deploy)
+
+Você pode testar a aplicação em produção agora mesmo através do link abaixo:
+
+- **Vercel:** [https://voxscript-qyaudr73q-wagnerxoliveiras-projects.vercel.app](https://voxscript-qyaudr73q-wagnerxoliveiras-projects.vercel.app)
+
+---
+
 > Uma aplicação web de transcrição de voz para texto em tempo real, focada em **acessibilidade pedagógica e inclusão** para pessoas com deficiência auditiva.
 
 ## 🎯 O Impacto do Projeto
@@ -53,4 +63,12 @@ A arquitetura foi desenhada para garantir **baixíssima latência** e **seguran�
     ├── 📄 index.html       # Estrutura DOM do Cyber HUD e injeção do VLibras
     ├── 📄 style.css        # Design system, propriedades customizadas e media queries
     └── 📄 script.js        # Engine assíncrona de transcrição e manipulação do DOM
+```
+
+## 📥 Como Clonar e Executar o Projeto Localmente
+
+Se você deseja baixar o código-fonte para a sua máquina utilizando o Git, execute o comando abaixo no seu terminal:
+
+```bash
+git clone [https://github.com/WagnerxOliveira/voxscript.git](https://github.com/WagnerxOliveira/voxscript.git)
 ```
