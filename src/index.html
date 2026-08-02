@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoxScript - Cyber Transcripter v3.0</title>
+
+  <!-- Google Fonts (Share Tech Mono e Outfit para look cyber e alta legibilidade) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container-app cyber-hud">
+
+    <!-- Topo Estilo HUD Militar/Computador Futurista -->
+    <div class="header-section">
+      <div class="hud-meta left-meta">
+        <span>[ VOX-OS v3.22 ]</span>
+        <span>SISTEMA: <span class="status-online">ONLINE</span></span>
+      </div>
+      
+      <div class="logo-icon-cyber">
+        <i class="bi bi-soundwave"></i>
+      </div>
+      
+      <h1 class="title cyber-title">VOXSCRIPT</h1>
+    </div>
+
+    <!-- Caixa de Transcrição Envelopada com Cantoneiras Sci-Fi -->
+    <div class="cyber-box-wrapper">
+      <span class="hud-corner top-left"></span>
+      <span class="hud-corner top-right"></span>
+      <span class="hud-corner bottom-left"></span>
+      <span class="hud-corner bottom-right"></span>
+      
+      <!-- Detalhes decorativos de borda -->
+      <div class="hud-header-bar">
+        <span class="hud-bar-dot"></span>
+        <span class="hud-bar-title">CANAL_DE_TRANSCRIÇÃO_01</span>
+        <span class="hud-bar-line"></span>
+        <button id="editToggleBtn" class="hud-edit-btn edit-mode-active" title="Alternar entre modo de leitura (compatível com Libras) e modo de edição manual">
+          <i class="bi bi-pencil-square"></i> MODO_EDIÇÃO
+        </button>
+      </div>
+
+      <div
+        id="transcription"
+        class="transcription-box cyber-text-box"
+        contenteditable="true"
+        data-has-content="false"
+        placeholder="Aguardando ativação de sinal de áudio digital..."
+      >Aguardando ativação de sinal de áudio digital...</div>
+
+      <!-- Barra de Informações do Rodapé do Box -->
+      <div class="hud-footer-bar">
+        <span>LANG: <span class="text-neon-cyan">PT-BR</span></span>
+        <span class="hud-bar-spacer">|</span>
+        <span>BITRATE: <span class="text-neon-cyan">128 KBPS</span></span>
+        <span class="hud-bar-spacer">|</span>
+        <span>SRC: <span class="text-neon-cyan">AUDIO_INPUT</span></span>
+      </div>
+    </div>
+
+    <!-- Grid de Botões Estilo Painel de Controle Cyber -->
+    <div class="row g-3">
+
+      <div class="col-sm-6">
+        <button
+          id="startBtn"
+          class="btn btn-cyber btn-cyber-start"
+          title="Iniciar a captura do microfone"
+        >
+          <div class="btn-cyber-bg"></div>
+          <i class="bi bi-mic-fill"></i> INICIAR_CAPTURA
+        </button>
+      </div>
+
+      <div class="col-sm-6">
+        <button
+          id="stopBtn"
+          class="btn btn-cyber btn-cyber-stop"
+          title="Parar a captura do microfone"
+        >
+          <div class="btn-cyber-bg"></div>
+          <i class="bi bi-stop-circle-fill"></i> PARAR_CAPTURA
+        </button>
+      </div>
+
+      <div class="col-sm-6">
+        <button
+          id="copyBtn"
+          class="btn btn-cyber btn-cyber-copy"
+          title="Copiar texto transcrito para a área de transferência"
+        >
+          <div class="btn-cyber-bg"></div>
+          <i class="bi bi-clipboard-fill"></i> COPIAR_DADOS
+        </button>
+      </div>
+
+      <div class="col-sm-6">
+        <button
+          id="clearBtn"
+          class="btn btn-cyber btn-cyber-clear"
+          title="Limpar toda a caixa de transcrição"
+        >
+          <div class="btn-cyber-bg"></div>
+          <i class="bi bi-trash3-fill"></i> LIMPAR_REGISTRO
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Status e Feedback Visual -->
+    <div class="status-container cyber-status-container">
+      <div id="recordingWave" class="recording-wave-cyber d-none">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="status" class="status cyber-status">
+        [ PRONTO PARA OPERAÇÃO ]
+      </div>
+    </div>
+
+  <!-- VLibras -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+  </div>
+  <!-- Libras Translator Widget -->
+  <div id="libras-widget">
+    <button id="libras-toggle" aria-label="Abrir tradutor em Libras" class="solid-btn">
+      🤟
+    </button>
+    <div id="libras-panel" class="hidden">
+      <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      <button id="libras-close" aria-label="Fechar tradutor">✖</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+/* VoxScript Cyber HUD v3.0 - Design System */
+
+:root {
+  /* Cores Cibernéticas */
+  --bg-dark: #030307;
+  --bg-panel: rgba(8, 12, 24, 0.75);
+  --border-neon-cyan: #00f0ff;
+  --border-neon-purple: #bd00ff;
+  --border-neon-green: #39ff14;
+  --border-neon-pink: #ff0055;
+  --border-neon-amber: #ffaa00;
+
+  --text-cyber-primary: #e2e8f0;
+  --text-cyber-muted: #64748b;
+  --text-cyber-cyan: #00f0ff;
+  --text-cyber-green: #39ff14;
+  
+  --font-mono: 'Share Tech Mono', 'Courier New', monospace;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  /* Grid Holográfico Cibernético */
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center;
+  
+  color: var(--text-cyber-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  padding: 10px 0;
+  overflow-x: hidden;
+}
+
+/* Camadas de efeito CRT/Tela Retro-Futurista */
+.screen-scanlines {
+  display: none; /* Desativado por performance gráfica */
+}
+
+.screen-glare {
+  display: none; /* Desativado por performance gráfica */
+}
+
+/* Painel Principal (Cyber HUD) */
+.container-app.cyber-hud {
+  width: 90%;
+  max-width: 900px;
+  background: #080c1b; /* Fundo sólido ultra-elegante de alto desempenho */
+  padding: 20px 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.08), inset 0 0 20px rgba(0, 240, 255, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Detalhes de Borda Glow */
+.container-app.cyber-hud::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--border-neon-cyan), var(--border-neon-purple), transparent);
+}
+
+/* Topo Estilo HUD */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.hud-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-cyber-muted);
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  letter-spacing: 0.05em;
+}
+
+.left-meta {
+  left: 0;
+  text-align: left;
+}
+
+.right-meta {
+  right: 0;
+  text-align: right;
+}
+
+.status-online {
+  color: var(--text-cyber-green);
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+  animation: blink 2s infinite;
+}
+
+.status-cyan {
+  color: var(--text-cyber-cyan);
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.logo-icon-cyber {
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--border-neon-cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--text-cyber-cyan);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25), inset 0 0 10px rgba(0, 240, 255, 0.15);
+  margin-bottom: 10px;
+}
+
+.cyber-title {
+  font-family: var(--font-mono);
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.3), 0 0 20px rgba(0, 240, 255, 0.3);
+  margin-bottom: 2px;
+}
+
+.cyber-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-cyber-muted);
+  letter-spacing: 0.15em;
+  margin-bottom: 0;
+}
+
+/* Envelopamento da Caixa (Cyber Box Wrapper) */
+.cyber-box-wrapper {
+  position: relative;
+  background: rgba(5, 7, 15, 0.9);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 12px;
+  padding: 12px 1px 1px 1px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+/* Cantoneiras HUD */
+.hud-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--border-neon-cyan);
+  border-style: solid;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.top-left {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+.top-right {
+  top: -2px;
+  right: -2px;
+  border-width: 2px 2px 0 0;
+}
+.bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 2px 2px;
+}
+.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Estilos de borda superior do HUD */
+.hud-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 18px 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-cyber-muted);
+}
+
+.solid-btn {\n  background: var(--border-neon-amber);\n  color: #030307;\n  border: none;\n  border-radius: 8px;\n  padding: 8px 12px;\n  font-family: var(--font-mono);\n  font-size: 0.9rem;\n  font-weight: 600;\n  cursor: pointer;\n  transition: all 0.25s ease;\n}\n\n.solid-btn:hover {\n  background: var(--border-neon-amber);\n  box-shadow: 0 0 12px var(--border-neon-amber);\n  color: #030307;\n}
+  background: var(--border-neon-amber);
+  color: #030307;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.solid-btn:hover {
+  background: var(--border-neon-amber);
+  box-shadow: 0 0 12px var(--border-neon-amber);
+  color: #030307;
+}
+
+#libras-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 2000;
+}
+
+#libras-panel {
+  width: 300px;
+  max-height: 80vh;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon-cyan);
+  border-radius: 12px;
+  padding: 12px;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0,240,255,0.2);
+  margin-bottom: 8px;
+}
+
+#libras-panel.hidden {
+  display: none;
+}
+
+.hud-edit-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--text-cyber-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.05em;
+  box-shadow: inset 0 0 6px rgba(0, 240, 255, 0.05);
+}
+
+.hud-edit-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.3), inset 0 0 6px rgba(0, 240, 255, 0.1);
+  color: #ffffff;
+}
+
+.hud-edit-btn.edit-mode-active {
+  border-color: var(--border-neon-amber);
+  color: var(--border-neon-amber);
+  box-shadow: 0 0 8px rgba(255, 170, 0, 0.3), inset 0 0 6px rgba(255, 170, 0, 0.1);
+}
+
+.hud-edit-btn.edit-mode-active:hover {
+  background: rgba(255, 170, 0, 0.1);
+  color: #ffffff;
+}
+
+.hud-bar-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--border-neon-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--border-neon-pink);
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+}
+
+.hud-bar-title {
+  letter-spacing: 0.08em;
+}
+
+.hud-bar-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba(0, 240, 255, 0.15);
+}
+
+/* Caixa de Transcrição */
+.transcription-box.cyber-text-box {
+  background: transparent;
+  color: #f1f5f9;
+  min-height: 210px;
+  max-height: 290px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  padding: 6px 20px 15px 20px;
+  outline: none;
+  margin-bottom: 0;
+  white-space: pre-wrap; /* Suporte a quebras de linha (\n) */
+}
+
+/* Rodapé do Box */
+.hud-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 20px;
+  border-top: 1px solid rgba(0, 240, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-cyber-muted);
+}
+
+.hud-bar-spacer {
+  opacity: 0.3;
+}
+
+.text-neon-cyan {
+  color: var(--text-cyber-cyan);
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+
+/* Estado de Foco da Caixa */
+.cyber-box-wrapper:has(.cyber-text-box:focus) {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.12), inset 0 0 15px rgba(0, 240, 255, 0.06);
+}
+
+.cyber-box-wrapper:has(.cyber-text-box:focus) .hud-corner {
+  box-shadow: 0 0 8px var(--border-neon-cyan);
+}
+
+/* Estado Ativo ao Gravar (Estilização Dinâmica Ativada via Script) */
+.cyber-box-wrapper.recording-active {
+  border-color: rgba(57, 255, 20, 0.4);
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.18), inset 0 0 15px rgba(57, 255, 20, 0.08);
+}
+
+.cyber-box-wrapper.recording-active .hud-corner {
+  border-color: var(--border-neon-green) !important;
+  box-shadow: 0 0 10px var(--border-neon-green);
+}
+
+.cyber-box-wrapper.recording-active .hud-bar-dot {
+  background-color: var(--border-neon-green) !important;
+  box-shadow: 0 0 8px var(--border-neon-green);
+}
+
+/* Estilo do Texto Provisório (Neon Matrix) */
+.interim {
+  color: var(--text-cyber-green);
+  font-style: italic;
+  font-weight: 400;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.7);
+  border-bottom: 1px dashed rgba(57, 255, 20, 0.6);
+  animation: glow-pulse 1.8s infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 5px rgba(57, 255, 20, 0.5); }
+  50% { text-shadow: 0 0 12px rgba(57, 255, 20, 0.8); }
+}
+
+/* Placeholder Nativo */
+.transcription-box[placeholder]:empty::before {
+  content: attr(placeholder);
+  color: var(--text-cyber-muted);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Botões Cyber HUD */
+.btn-cyber {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-cyber-primary);
+  background: rgba(10, 16, 30, 0.55);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  z-index: 1;
+}
+
+.btn-cyber-bg {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--border-neon-cyan);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.btn-cyber:hover:not(:disabled) .btn-cyber-bg {
+  left: 0;
+  opacity: 1;
+}
+
+.btn-cyber:hover:not(:disabled) {
+  color: #030307;
+  text-shadow: none;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-cyber:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.btn-cyber:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Botão Iniciar (Verde) */
+.btn-cyber-start {
+  border-color: rgba(57, 255, 20, 0.35);
+  color: rgba(57, 255, 20, 0.85);
+}
+.btn-cyber-start .btn-cyber-bg {
+  background: var(--border-neon-green);
+}
+.btn-cyber-start:hover:not(:disabled) {
+  border-color: var(--border-neon-green);
+  box-shadow: 0 0 18px rgba(57, 255, 20, 0.5);
+  color: #030307;
+}
+
+/* Botão Parar (Rosa Neon) */
+.btn-cyber-stop {
+  border-color: rgba(255, 0, 85, 0.35);
+  color: rgba(255, 0, 85, 0.85);
+}
+.btn-cyber-stop .btn-cyber-bg {
+  background: var(--border-neon-pink);
+}
+.btn-cyber-stop:hover:not(:disabled) {
+  border-color: var(--border-neon-pink);
+  box-shadow: 0 0 18px rgba(255, 0, 85, 0.5);
+  color: #030307;
+}
+
+/* Botão Copiar (Ciano Neon) */
+.btn-cyber-copy {
+  border-color: rgba(0, 240, 255, 0.35);
+  color: rgba(0, 240, 255, 0.85);
+}
+.btn-cyber-copy .btn-cyber-bg {
+  background: var(--border-neon-cyan);
+}
+.btn-cyber-copy:hover:not(:disabled) {
+  border-color: var(--border-neon-cyan);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+  color: #030307;
+}
+
+/* Botão Limpar (Âmbar Neon) */
+.btn-cyber-clear {
+  border-color: rgba(255, 170, 0, 0.35);
+  color: rgba(255, 170, 0, 0.85);
+}
+.btn-cyber-clear .btn-cyber-bg {
+  background: var(--border-neon-amber);
+}
+.btn-cyber-clear:hover:not(:disabled) {
+  border-color: var(--border-neon-amber);
+  box-shadow: 0 0 18px rgba(255, 170, 0, 0.5);
+  color: #030307;
+}
+
+/* Status e Feedback Cibernéticos */
+.status-container.cyber-status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  min-height: 46px;
+}
+
+.status.cyber-status {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text-cyber-cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+/* Onda de Gravação Cyber (Sensor Analisador) */
+.recording-wave-cyber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  margin-bottom: 12px;
+}
+
+.recording-wave-cyber span {
+  width: 4px;
+  height: 100%;
+  background-color: var(--border-neon-cyan);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  border-radius: 2px;
+  animation: wave-cyber 1s ease-in-out infinite;
+}
+
+/* Graduação de cor nas barras */
+.recording-wave-cyber span:nth-child(1),
+.recording-wave-cyber span:nth-child(7) { background-color: var(--border-neon-purple); box-shadow: 0 0 8px var(--border-neon-purple); }
+.recording-wave-cyber span:nth-child(2),
+.recording-wave-cyber span:nth-child(6) { background-color: var(--border-neon-cyan); box-shadow: 0 0 8px var(--border-neon-cyan); }
+.recording-wave-cyber span:nth-child(3),
+.recording-wave-cyber span:nth-child(5) { background-color: var(--border-neon-green); box-shadow: 0 0 8px var(--border-neon-green); }
+.recording-wave-cyber span:nth-child(4) { background-color: #ffffff; box-shadow: 0 0 10px #ffffff; }
+
+.recording-wave-cyber span:nth-child(1) { animation-delay: 0.1s; }
+.recording-wave-cyber span:nth-child(2) { animation-delay: 0.25s; }
+.recording-wave-cyber span:nth-child(3) { animation-delay: 0.4s; }
+.recording-wave-cyber span:nth-child(4) { animation-delay: 0.55s; }
+.recording-wave-cyber span:nth-child(5) { animation-delay: 0.4s; }
+.recording-wave-cyber span:nth-child(6) { animation-delay: 0.25s; }
+.recording-wave-cyber span:nth-child(7) { animation-delay: 0.1s; }
+
+@keyframes wave-cyber {
+  0%, 100% { transform: scaleY(0.2); }
+  50% { transform: scaleY(1.3); }
+}
+
+/* Customização Scrollbar Cyber */
+.transcription-box.cyber-text-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcription-box.cyber-text-box::-webkit-scrollbar-track {
+  background: rgba(0, 240, 255, 0.02);
+}
+
+.transcription-box.cyber-text-box::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.18);
+  border-radius: 0;
+}
+
+.transcription-box.cyber-text-box::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hud-meta {
+    position: static;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  .left-meta { text-align: left; }
+  .right-meta { text-align: right; }
+  
+  .container-app.cyber-hud {
+    padding: 24px 20px;
+    margin: 15px;
+  }
+  
+  .cyber-title {
+    font-size: 2.3rem;
+  }
+}
